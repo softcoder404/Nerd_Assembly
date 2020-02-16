@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'proposal_description_screen.dart';
+import '../data/proposal_data.dart';
+import '../model/proposal_model.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -6,9 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _description =
-      "A guide for 4-6 people is needed, it will be a walking tour of the Lviv\'s historic places with lunch and coffess breaks. Lviv(Golden Horseshoe) and Carpathian Mountains.";
-
+  List<Proposal> _proposalList = proposalList;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 margin: EdgeInsets.only(bottom: 30),
                 child: Text(
-                  '321 proposals for you',
+                  '${_proposalList.length} proposals for you',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.grey,
@@ -73,244 +74,279 @@ class _HomeScreenState extends State<HomeScreen> {
               //Listview
               Container(
                 height: 420,
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    Container(
-                      width: MediaQuery.of(context).size.width - 40,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Text(
-                                    'Join Up!',
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Text(
-                                    'Febuary 14',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                  children: _proposalList
+                      .map((proposalItem) => Container(
+                            margin: EdgeInsets.only(right: 10),
+                            width: MediaQuery.of(context).size.width - 40,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          ),
-                          Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              _description,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white.withOpacity(0.9),
-                                letterSpacing: 1,
-                                wordSpacing: 2,
-                                height: 1.5,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                              "--- Sightseeing tour 'Getting to know Lviv'",
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Expanded(
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 5),
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.yellow,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.all(15.0),
-                                          child: Icon(
-                                            Icons.access_time,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            size: 26,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 15.0),
-                                          child: Text(
-                                            '11:00 am',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 5),
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.lightBlueAccent,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.all(15.0),
-                                          child: Icon(
-                                            Icons.people,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            size: 26,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 15.0),
-                                          child: Text(
-                                            '2 - 5',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 5),
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.all(15.0),
-                                          child: Icon(
-                                            Icons.language,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                            size: 26,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              bottom: 15.0),
-                                          child: Text(
-                                            'English',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Material(
-                            color: Theme.of(context).primaryColor,
-                            elevation: 10,
-                            child: Container(
-                              height: 50,
-                              width: double.infinity,
-                              margin: EdgeInsets.only(top: 15),
-                              child: Row(
+                            child: GestureDetector(
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ProposalDescriptionScreen(
+                                              proposal: proposalItem))),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  Expanded(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color:
-                                                  Colors.white.withOpacity(0.7),
-                                              width: 0.5)),
-                                      child: FlatButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          'REFUSE',
-                                          style: TextStyle(color: Colors.white),
+                                  Container(
+                                    width: double.infinity,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Text(
+                                            proposalItem.title,
+                                            style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white,
+                                            ),
+                                          ),
                                         ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Text(
+                                            proposalItem.date,
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Text(
+                                      proposalItem.description,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white.withOpacity(0.9),
+                                        letterSpacing: 1,
+                                        wordSpacing: 2,
+                                        height: 1.5,
                                       ),
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color:
-                                                  Colors.white.withOpacity(0.7),
-                                              width: 0.5)),
-                                      child: FlatButton(
-                                        onPressed: () {},
-                                        child: Text(
-                                          'ACCEPT',
-                                          style: TextStyle(color: Colors.white),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Text(
+                                      proposalItem.shortDescription,
+                                      style: TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: Container(
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            height: 120,
+                                            decoration: BoxDecoration(
+                                              color: Colors.yellow,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      15.0),
+                                                  child: Icon(
+                                                    Icons.access_time,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    size: 26,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 15.0),
+                                                  child: Text(
+                                                    proposalItem.time,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
                                         ),
+                                        Expanded(
+                                          child: Container(
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            height: 120,
+                                            decoration: BoxDecoration(
+                                              color: Colors.lightBlueAccent,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      15.0),
+                                                  child: Icon(
+                                                    Icons.people,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    size: 26,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 15.0),
+                                                  child: Text(
+                                                    proposalItem.people,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 5),
+                                            height: 120,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      15.0),
+                                                  child: Icon(
+                                                    Icons.language,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                    size: 26,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          bottom: 15.0),
+                                                  child: Text(
+                                                    proposalItem.language,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Theme.of(context)
+                                                          .primaryColor,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Material(
+                                    color: Theme.of(context).primaryColor,
+                                    elevation: 10,
+                                    child: Container(
+                                      height: 50,
+                                      width: double.infinity,
+                                      margin: EdgeInsets.only(top: 15),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.white
+                                                          .withOpacity(0.7),
+                                                      width: 0.5)),
+                                              child: FlatButton(
+                                                onPressed: () {},
+                                                child: Text(
+                                                  'REFUSE',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.white
+                                                          .withOpacity(0.7),
+                                                      width: 0.5)),
+                                              child: FlatButton(
+                                                onPressed: () {},
+                                                child: Text(
+                                                  'ACCEPT',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                          ))
+                      .toList(),
                 ),
               ),
             ],
